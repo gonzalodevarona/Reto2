@@ -2,8 +2,10 @@ package com.example.pokedex
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.pokedex.databinding.ActivityBuscadorBinding
 import com.example.pokedex.databinding.ActivityMainBinding
@@ -11,6 +13,7 @@ import com.example.pokedex.util.Constants
 import com.example.pokedex.util.HTTPSWebUtilDomi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Buscador : AppCompatActivity() {
 
@@ -29,11 +32,31 @@ class Buscador : AppCompatActivity() {
 
         username = intent.extras?.getString("username")!!
 
-        
+
 
         binding.catchBtn.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
-                HTTPSWebUtilDomi().GETRequest("${Constants.BASE_URL_POKEAPI}/${binding.catchPokemon.text}")
+            var namePokemon = binding.catchPokemon.text.toString()
+
+            if (namePokemon != ""){
+                namePokemon = namePokemon.lowercase()
+                namePokemon = namePokemon.trim()
+
+                lifecycleScope.launch(Dispatchers.IO) {
+
+                    try {
+                        val response = HTTPSWebUtilDomi().GETRequest("${Constants.BASE_URL_POKEAPI}api/v2/pokemon/${namePokemon}")
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main){
+                            Toast.makeText(this@Buscador, "Error: El nombre del Pokémon a capturar es incorrecto",Toast.LENGTH_LONG)
+                        }
+
+                    }
+
+                }
+
+            } else{
+                Toast.makeText(this, "Error: El nombre del Pokémon no puede estar vacio",Toast.LENGTH_LONG)
+
             }
         }
 

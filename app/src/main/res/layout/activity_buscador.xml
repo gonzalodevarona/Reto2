@@ -29,7 +29,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/catchPokemon"
             android:layout_width="380dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
@@ -39,7 +39,7 @@
             android:textColorHint="#6A000000" />
 
         <Button
-            android:id="@+id/atraparBtn"
+            android:id="@+id/catchBtn"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"

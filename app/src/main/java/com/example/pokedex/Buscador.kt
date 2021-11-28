@@ -30,7 +30,7 @@ class Buscador : AppCompatActivity() {
     private lateinit var username: String
 
 
-    private lateinit var localPokemon:ArrayList<Pokemon>
+
 
     //STATE
     private val adapter = PokemonAdapter()
@@ -46,7 +46,8 @@ class Buscador : AppCompatActivity() {
 
         username = intent.extras?.getString("username")!!
 
-        localPokemon = ArrayList<Pokemon>()
+        binding.greeting.text = binding.greeting.text.toString()+username
+
         //Recrear el estado
         val pokemonRecycler = binding.pokemonRecycler
         pokemonRecycler.setHasFixedSize(true)

@@ -6,40 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".PokemonView">
 
-    <ImageView
-        android:id="@+id/imagePokemon"
-        android:layout_width="234dp"
-        android:layout_height="234dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/pokemonName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Nombre + (tipo) del pokémon"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:background="@drawable/background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePokemon" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imagePokemon"
+            android:layout_width="234dp"
+            android:layout_height="234dp"
+            android:layout_marginTop="40dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/pokemonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:paddingBottom="12dp"
+            android:text="Nombre + (tipo) del pokémon"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Defensa"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <TextView
         android:id="@+id/defenseValue"
@@ -56,12 +64,13 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Ataque"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <TextView
         android:id="@+id/attackValue"
@@ -80,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Velocidad"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Vida"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -132,4 +143,5 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/speedValue" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

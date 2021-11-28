@@ -1,8 +1,9 @@
-package com.example.pokedex
+package com.example.pokedex.gui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pokedex.R
 import com.example.pokedex.model.Pokemon
 import com.example.pokedex.util.LoadImage
 

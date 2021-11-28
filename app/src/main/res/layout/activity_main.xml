@@ -7,7 +7,7 @@
     android:background="@drawable/pokeballs"
     android:backgroundTint="#A6FFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context=".MainActivity">
+    tools:context=".gui.MainActivity">
 
     <TextView
         android:id="@+id/textView"

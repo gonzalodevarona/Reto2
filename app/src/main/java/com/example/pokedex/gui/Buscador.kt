@@ -1,9 +1,8 @@
-package com.example.pokedex
+package com.example.pokedex.gui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -11,9 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.databinding.ActivityBuscadorBinding
 import com.example.pokedex.model.Pokemon
-import com.example.pokedex.model.User
 import com.example.pokedex.util.Constants
 import com.example.pokedex.util.HTTPSWebUtilDomi
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
@@ -39,6 +38,7 @@ class Buscador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBuscadorBinding.inflate(layoutInflater)
 
+
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         supportActionBar?.hide()
@@ -55,7 +55,8 @@ class Buscador : AppCompatActivity() {
 
         pokemonRecycler.adapter = adapter
 
-        adapter.setOnItemClickListener(object :PokemonAdapter.IonItemClickListener{
+
+        adapter.setOnItemClickListener(object : PokemonAdapter.IonItemClickListener {
             override fun onItemClick(position: Int) {
                 val intent = Intent(this@Buscador, PokemonView::class.java).apply {
                     putExtra("pokemon", adapter.getPokemon(position))
@@ -101,8 +102,6 @@ class Buscador : AppCompatActivity() {
                             Toast.makeText(this@Buscador, "${namePokemon} ha sido capturado exitosamente!",Toast.LENGTH_LONG)
                             addPokemonsToRecycler()
                         }
-
-
 
 
 
@@ -227,7 +226,8 @@ class Buscador : AppCompatActivity() {
             stats[1].toDouble(),
             stats[2].toDouble(),
             stats[5].toDouble(),
-            username)
+            username,
+            System.currentTimeMillis())
 
         return newPokemon
 
@@ -260,7 +260,10 @@ class Buscador : AppCompatActivity() {
     fun addPokemonsToRecycler(){
 
         adapter.clearPokemon()
-        Firebase.firestore.collection("pokemon").whereEqualTo("username", username).get().addOnCompleteListener { task ->
+        Firebase.firestore.collection("pokemon").
+        whereEqualTo("username", username).
+        orderBy("timeAdded", Query.Direction.ASCENDING).
+        get().addOnCompleteListener { task ->
 
             for (document in task.result!!) {
                 var newPokemon = document.toObject(Pokemon::class.java)

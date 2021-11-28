@@ -9,4 +9,5 @@ data class Pokemon(val image:String = "",
                    val attack:Double = 0.0,
                    val defense:Double = 0.0,
                    val speed:Double = 0.0,
-                   val username:String = "",) : Serializable
+                   val username:String = "",
+                   val timeAdded:Long = 0) : Serializable

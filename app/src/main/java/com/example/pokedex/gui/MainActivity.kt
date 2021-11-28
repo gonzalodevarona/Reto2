@@ -1,12 +1,10 @@
-package com.example.pokedex
+package com.example.pokedex.gui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.Toast
 import com.example.pokedex.databinding.ActivityMainBinding
 import com.example.pokedex.model.User

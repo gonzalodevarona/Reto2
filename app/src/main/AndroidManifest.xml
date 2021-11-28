@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pokedex">
         <activity
-            android:name=".PokemonView"
+            android:name=".gui.PokemonView"
             android:exported="true" />
         <activity
-            android:name=".Buscador"
+            android:name=".gui.Buscador"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".gui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

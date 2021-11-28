@@ -8,6 +8,8 @@ import com.example.pokedex.databinding.ActivityMainBinding
 import com.example.pokedex.databinding.ActivityPokemonViewBinding
 import com.example.pokedex.model.Pokemon
 import com.example.pokedex.util.LoadImage
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PokemonView : AppCompatActivity() {
 
@@ -35,5 +37,22 @@ class PokemonView : AppCompatActivity() {
         binding.defenseValue.text = pokemon.defense.toString()
         binding.lifeValue.text = pokemon.health.toString()
         binding.speedValue.text = pokemon.speed.toString()
+
+        binding.releasePokemon.setOnClickListener {
+            Firebase.firestore.collection("pokemon").
+            whereEqualTo("username", pokemon.username).
+            whereEqualTo("name", pokemon.name).
+            get().addOnCompleteListener { task ->
+
+                for (document in task.result!!) {
+                    document.reference.delete()
+
+                }
+
+
+            }
+
+            this.finish()
+        }
     }
 }

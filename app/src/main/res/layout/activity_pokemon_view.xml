@@ -119,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/releasePokemon"
         android:layout_width="262dp"
         android:layout_height="73dp"
         android:layout_marginTop="16dp"

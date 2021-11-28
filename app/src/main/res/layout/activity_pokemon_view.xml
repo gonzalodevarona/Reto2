@@ -7,10 +7,10 @@
     tools:context=".PokemonView">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imagePokemon"
         android:layout_width="234dp"
-        android:layout_height="224dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="234dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,14 +21,14 @@
         android:id="@+id/pokemonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="Nombre + (tipo) del pokémon"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePokemon" />
 
     <TextView
         android:id="@+id/textView6"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Defensa"
-        android:textSize="17sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Valor de defensa"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/attackValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Ataque"
-        android:textSize="17sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Valor de ataque"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/defenseValue"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Velocidad"
-        android:textSize="17sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/defenseValue" />
@@ -90,10 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="1dp"
         android:text="Valor de velocidad"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/lifeValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -104,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Vida"
-        android:textSize="17sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/attackValue" />
@@ -115,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Valor de vida"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/speedValue"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -124,7 +122,7 @@
         android:id="@+id/button2"
         android:layout_width="262dp"
         android:layout_height="73dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
         android:text="Liberar Pokémon"
         android:textSize="17sp"

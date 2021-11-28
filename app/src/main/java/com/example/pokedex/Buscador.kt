@@ -1,8 +1,8 @@
 package com.example.pokedex
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -10,10 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.databinding.ActivityBuscadorBinding
 import com.example.pokedex.model.Pokemon
-import com.example.pokedex.model.User
 import com.example.pokedex.util.Constants
 import com.example.pokedex.util.HTTPSWebUtilDomi
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
@@ -21,8 +19,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.google.gson.JsonObject
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.ktx.toObject
 
 
 class Buscador : AppCompatActivity() {
@@ -55,6 +51,19 @@ class Buscador : AppCompatActivity() {
         pokemonRecycler.layoutManager = LinearLayoutManager(this)
 
         pokemonRecycler.adapter = adapter
+
+        adapter.setOnItemClickListener(object :PokemonAdapter.IonItemClickListener{
+            override fun onItemClick(position: Int) {
+                val intent = Intent(this@Buscador, PokemonView::class.java).apply {
+                    putExtra("pokemon", adapter.getPokemon(position))
+                }
+                startActivity(intent)
+            }
+
+
+        })
+
+
         addPokemonsToRecycler()
 
 
@@ -115,6 +124,9 @@ class Buscador : AppCompatActivity() {
 
             }
         }
+
+
+
 
 
 

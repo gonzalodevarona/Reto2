@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                 query.get().addOnCompleteListener { task ->
 
                     //Si usuario no existe
+
                     if (task.result?.size() == 0){
 
                         Firebase.firestore.collection("trainers").add(User(username))

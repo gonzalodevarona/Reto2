@@ -89,23 +89,18 @@ class Buscador : AppCompatActivity() {
 
                         namePokemon = namePokemon.replaceFirstChar { it.uppercaseChar() }
 
-                        if(checkPokemon(namePokemon) == false){
 
-                            val stats = jobj["stats"].toString()
-                            val types = jobj["types"].toString()
-                            val images = jobj["sprites"].toString()
+                        val stats = jobj["stats"].toString()
+                        val types = jobj["types"].toString()
+                        val images = jobj["sprites"].toString()
 
-                            var newPokemon = createPokemon(namePokemon, images, types ,stats)
-                            Firebase.firestore.collection("pokemon").add(newPokemon)
-                            withContext(Dispatchers.Main){
-                                Toast.makeText(this@Buscador, "${namePokemon} ha sido capturado exitosamente!",Toast.LENGTH_LONG)
-                                addPokemonsToRecycler()
-                            }
-                        } else{
-                            withContext(Dispatchers.Main){
-                                Toast.makeText(this@Buscador, "El Pokémon ya ha sido capturado antes",Toast.LENGTH_LONG)
-                            }
+                        var newPokemon = createPokemon(namePokemon, images, types ,stats)
+                        Firebase.firestore.collection("pokemon").add(newPokemon)
+                        withContext(Dispatchers.Main){
+                            Toast.makeText(this@Buscador, "${namePokemon} ha sido capturado exitosamente!",Toast.LENGTH_LONG)
+                            addPokemonsToRecycler()
                         }
+
 
 
 
@@ -238,27 +233,27 @@ class Buscador : AppCompatActivity() {
 
     }
 
-    fun checkPokemon(pokemonName : String) : Boolean{
-
-        //TODO THIS METHOD DOES NOT WORK
-        var exists = false
-        val query = Firebase.firestore.collection("pokemon").whereEqualTo("name",pokemonName)
-       // query.whereEqualTo("username",username)
-
-        query.get().addOnCompleteListener { task ->
-
-            //Si pokemon existe
-            var count = task.result?.size()
-            if (task.result?.size() != 0){
-
-                exists = true
-
-            }
-
-        }
-
-        return exists
-    }
+//    fun checkPokemon(pokemonName : String) : Boolean{
+//
+//        //TODO THIS METHOD DOES NOT WORK
+//        var exists = false
+//        val query = Firebase.firestore.collection("pokemon").whereEqualTo("name",pokemonName).whereEqualTo("username",username).get()
+//
+//
+//        query.addOnCompleteListener { task ->
+//
+//            //Si pokemon existe
+//            var count = task.result?.size()
+//            if (task.result?.size() != 0){
+//
+//                exists = true
+//
+//            }
+//
+//        }
+//
+//        return exists
+//    }
 
 
     fun addPokemonsToRecycler(){

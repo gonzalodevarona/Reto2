@@ -9,7 +9,7 @@ import com.example.pokedex.util.LoadImage
 
 class PokemonAdapter :  RecyclerView.Adapter<PokemonViewHolder>(){
 
-    private val pokemons = ArrayList<Pokemon>()
+    private var pokemons = ArrayList<Pokemon>()
     private lateinit var mListener: IonItemClickListener
 
 
@@ -45,6 +45,7 @@ class PokemonAdapter :  RecyclerView.Adapter<PokemonViewHolder>(){
     fun getPokemon(position: Int): Pokemon {
         return pokemons.get(position)
     }
+
 
     fun clearPokemon(){
         pokemons.clear()

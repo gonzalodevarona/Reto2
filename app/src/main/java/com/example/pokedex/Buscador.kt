@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.databinding.ActivityBuscadorBinding
 import com.example.pokedex.model.Pokemon
+import com.example.pokedex.model.User
 import com.example.pokedex.util.Constants
 import com.example.pokedex.util.HTTPSWebUtilDomi
 import com.google.firebase.firestore.ktx.firestore
@@ -123,6 +124,45 @@ class Buscador : AppCompatActivity() {
                 Toast.makeText(this, "Error: El nombre del Pokémon no puede estar vacio",Toast.LENGTH_LONG)
 
             }
+        }
+
+        binding.searchBtn.setOnClickListener {
+
+            var namePokemon = binding.searchPokemon.text.toString()
+
+            if (namePokemon != ""){
+                namePokemon = namePokemon.trim()
+                namePokemon = namePokemon.replaceFirstChar { it.uppercaseChar() }
+
+                Firebase.firestore.collection("pokemon")
+                    .whereEqualTo("username", username)
+                    .whereEqualTo("name",namePokemon)
+                    .get().addOnCompleteListener { task ->
+
+
+                    if (task.result?.size() != 0){
+                        adapter.clearPokemon()
+                        for (document in task.result!!) {
+                            var newPokemon = document.toObject(Pokemon::class.java)
+
+                            adapter.addPokemon(newPokemon)
+                            adapter.notifyDataSetChanged()
+                        }
+
+                    } else{
+
+                        Toast.makeText(this@Buscador, "Error: No has capturado el Pokémon que deseas buscar", Toast.LENGTH_LONG)
+                    }
+
+
+                }
+
+            } else{
+                addPokemonsToRecycler()
+            }
+
+
+
         }
 
 

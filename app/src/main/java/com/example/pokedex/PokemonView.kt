@@ -32,7 +32,7 @@ class PokemonView : AppCompatActivity() {
         var loadImage  = LoadImage(binding.imagePokemon)
         loadImage.execute(pokemon.image)
 
-        binding.pokemonName.text = pokemon.name
+        binding.pokemonName.text =  "${pokemon.name} (${pokemon.type})"
         binding.attackValue.text = pokemon.attack.toString()
         binding.defenseValue.text = pokemon.defense.toString()
         binding.lifeValue.text = pokemon.health.toString()

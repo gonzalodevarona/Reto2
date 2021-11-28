@@ -57,7 +57,6 @@ class PokemonAdapter :  RecyclerView.Adapter<PokemonViewHolder>(){
 
 
 
-
     interface IonItemClickListener{
         fun onItemClick(position: Int)
     }

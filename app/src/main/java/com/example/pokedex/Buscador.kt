@@ -3,6 +3,7 @@ package com.example.pokedex
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -64,8 +65,6 @@ class Buscador : AppCompatActivity() {
 
         })
 
-
-        addPokemonsToRecycler()
 
 
 
@@ -171,6 +170,12 @@ class Buscador : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        addPokemonsToRecycler()
     }
 
     fun createPokemon(name: String, images: String, types: String, stats: String) : Pokemon{

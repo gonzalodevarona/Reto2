@@ -13,6 +13,7 @@ import com.example.pokedex.model.Pokemon
 import com.example.pokedex.model.User
 import com.example.pokedex.util.Constants
 import com.example.pokedex.util.HTTPSWebUtilDomi
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
@@ -21,11 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.google.gson.JsonObject
 import com.google.firebase.firestore.QueryDocumentSnapshot
-
-
-
-
-
+import com.google.firebase.firestore.ktx.toObject
 
 
 class Buscador : AppCompatActivity() {
@@ -33,6 +30,9 @@ class Buscador : AppCompatActivity() {
     private lateinit var binding: ActivityBuscadorBinding
 
     private lateinit var username: String
+
+
+    private lateinit var localPokemon:ArrayList<Pokemon>
 
     //STATE
     private val adapter = PokemonAdapter()
@@ -48,14 +48,15 @@ class Buscador : AppCompatActivity() {
 
         username = intent.extras?.getString("username")!!
 
-
+        localPokemon = ArrayList<Pokemon>()
         //Recrear el estado
         val pokemonRecycler = binding.pokemonRecycler
         pokemonRecycler.setHasFixedSize(true)
         pokemonRecycler.layoutManager = LinearLayoutManager(this)
-        pokemonRecycler.adapter = adapter
 
+        pokemonRecycler.adapter = adapter
         addPokemonsToRecycler()
+
 
 
 
@@ -206,29 +207,17 @@ class Buscador : AppCompatActivity() {
     fun addPokemonsToRecycler(){
 
         adapter.clearPokemon()
-
-        val query = Firebase.firestore.collection("pokemon").whereEqualTo("username", username)
-        query.get().addOnCompleteListener { task ->
-            Log.e(">>>", task.result!!.toString()+" gay")
+        Firebase.firestore.collection("pokemon").whereEqualTo("username", username).get().addOnCompleteListener { task ->
 
             for (document in task.result!!) {
-                Log.e(">>>", document["name"].toString())
-
-                var newPokemon = Pokemon(
-                                document["image"].toString(),
-                                document["name"].toString(),
-                                document["type"].toString(),
-                                document["health"].toString().toDouble(),
-                                document["attack"].toString().toDouble(),
-                                document["defense"].toString().toDouble(),
-                                document["speed"].toString().toDouble(),
-                                document["username"].toString())
+                var newPokemon = document.toObject(Pokemon::class.java)
 
                 adapter.addPokemon(newPokemon)
+                adapter.notifyDataSetChanged()
             }
 
-        }
 
+        }
 
     }
 
